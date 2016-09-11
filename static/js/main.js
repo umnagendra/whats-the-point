@@ -1,6 +1,6 @@
 // constants
-var TRANSCRIPT_THRESHOLD        = 20;
-var SUMMARIZATION_FACTOR        = 0.15;
+var TRANSCRIPT_THRESHOLD        = 10;
+var SUMMARIZATION_FACTOR        = 0.5;
 var PERIOD                      = ". ";
 var SUMMARIZE_URI               = "/summarize";
 
@@ -50,9 +50,11 @@ function toggleWaveGraphicState() {
 
 function toggleButtonState() {
     if (isStart) {
-        actionButton.innerText = "Stop";
+        actionButton.innerText = "STOP";
+        actionButton.style.color = 'red';
     } else {
-        actionButton.innerText = "Start";
+        actionButton.innerText = "START";
+        actionButton.style.color = 'blue';
     }
 }
 
@@ -71,7 +73,7 @@ function sendForSummarization() {
     }).then(function(response) {
         var jsonResponse = '';
         response.json().then(function(json) {
-            jsonResponse = JSON.stringify(json);
+            jsonResponse = json;
             console.log(jsonResponse);
             displaySummary(jsonResponse);
         });
@@ -83,9 +85,11 @@ function sendForSummarization() {
     });
 }
 
-function displaySummary(summaries) {
-    console.log(summaries);
-    // TODO show on UI
+function displaySummary(data) {
+    summaries = data.summary;
+    for(var i in summaries) {
+        appendSentence(summaries[i]);
+    }
 }
 
 recognition.onresult = function(event) {
@@ -110,8 +114,8 @@ recognition.onend = function () {
     }
 }
 
-function showThisSentence(thisSentence) {
-    var thisSentenceDiv = document.createElement('li');
+function appendSentence(thisSentence) {
+    var thisSentenceDiv = document.createElement('div');
     thisSentenceDiv.innerText = thisSentence;
     document.getElementById('sentences').appendChild(thisSentenceDiv);
 }
