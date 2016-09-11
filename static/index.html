@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>What's the point ?!</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Candal" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Candal|Fira+Mono" rel="stylesheet">
     <link rel="stylesheet" href="theme/main.css" type="text/css">
     <script src="js/main.js" type="text/javascript"></script>
 </head>
@@ -13,13 +13,18 @@
 
 <!-- The animated equalizer wave graphic -->
     <div id="wave" class="end">
-        <span class="flex-item"></span>
-        <span class="flex-item"></span>
-        <span class="flex-item"></span>
-        <span class="flex-item"></span>
+        <div class="container">
+            <span class="flex-item"></span>
+            <span class="flex-item"></span>
+            <span class="flex-item"></span>
+            <span class="flex-item"></span>
+        </div>
     </div>
 
-    <button id="actionBtn" class="toggle" onclick="toggle(this)">Start</button>
-    <ul id="sentences"></ul>
+    <div id="BtnDiv">
+        <button id="actionBtn" class="toggle" onclick="toggle(this)">START</button>
+    </div>
+
+    <div id="sentences"></div>
 </body>
 </html>
