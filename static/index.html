@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>What's the point ?!</title>
+
+    <link rel="stylesheet" href="theme/main.css" type="text/css">
     <script src="js/main.js" type="text/javascript"></script>
 </head>
-<body>
-<button onclick="startListening()">Start</button>
-<button onclick="stopListening()">Stop</button>
+<body onload="init()">
 
-<p id="sentences"></p>
-<script>
-</script>
+<!-- The animated equalizer wave graphic -->
+<div id="wave" class="end">
+    <span class="flex-item"></span>
+    <span class="flex-item"></span>
+    <span class="flex-item"></span>
+    <span class="flex-item"></span>
+</div>
+
+<button id="actionBtn" class="toggle" onclick="toggle(this)">Start</button>
+<ul id="sentences"></ul>
 </body>
 </html>
