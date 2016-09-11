@@ -145,3 +145,13 @@ span:nth-child(4) {
     background-color: black;
     margin-bottom: 0;
 }
+
+footer {
+    width: 100%;
+    position: fixed;
+    bottom: 2px;
+    font-family: 'Fira Mono', monospace;
+    font-size: 10px;
+    color: white;
+    text-align: center;
+}
