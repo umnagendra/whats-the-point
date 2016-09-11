@@ -20,6 +20,11 @@ def serve_js(filename):
     return send_from_directory('static/js', filename)
 
 
+@app.route("/theme/<path:filename>")
+def serve_css(filename):
+    return send_from_directory('static/theme', filename)
+
+
 @app.route('/summarize', methods=['POST'])
 def summarize_part():
     if not request.json or not 'text' in request.json:
