@@ -1,6 +1,7 @@
 // constants
 var TRANSCRIPT_THRESHOLD        = 10;
 var SUMMARIZATION_FACTOR        = 0.5;
+var FINAL_SUMMARY_COUNT         = 10;
 var PERIOD                      = ". ";
 var SUMMARIZE_URI               = "/summarize";
 
@@ -33,7 +34,7 @@ function toggle(button) {
         // stop listening for speech
         recognition.abort();
         isItReallyStopped = true;
-        // TODO final call to summarize and display
+        sendForSummarization(totalBuffer, FINAL_SUMMARY_COUNT);
     }
     toggleWaveGraphicState();
     toggleButtonState();
@@ -58,11 +59,11 @@ function toggleButtonState() {
     }
 }
 
-function sendForSummarization() {
+function sendForSummarization(transcript, count) {
     var summarizePayload = {};
-    summarizePayload.text = transcriptBuffer;
+    summarizePayload.text = transcript;
 
-    summarizePayload.count = Math.ceil(transcriptCount * SUMMARIZATION_FACTOR);
+    summarizePayload.count = count;
 
     fetch(SUMMARIZE_URI, {
         method: "POST",
@@ -86,10 +87,27 @@ function sendForSummarization() {
 }
 
 function displaySummary(data) {
+    if (isItReallyStopped) {
+        // TODO handle final summary case
+        displayCompleteSummary(data);
+    } else {
+        summaries = data.summary;
+        for(var i in summaries) {
+            appendSentence(summaries[i]);
+        }
+        document.getElementById('sentences').className = 'partialsummary';
+    }
+}
+
+function displayCompleteSummary(data) {
     summaries = data.summary;
+    // empty the sentences div so the complete summary can be shown
+    var sentencesElement = document.getElementById('sentences');
+    sentencesElement.innerHTML = '';
     for(var i in summaries) {
         appendSentence(summaries[i]);
     }
+    sentencesElement.className = '';
 }
 
 recognition.onresult = function(event) {
@@ -102,7 +120,7 @@ recognition.onresult = function(event) {
 
     // send all text in transcript buffer for summarization to server
     if (transcriptCount == TRANSCRIPT_THRESHOLD) {
-        sendForSummarization();
+        sendForSummarization(transcriptBuffer, Math.ceil(transcriptCount * SUMMARIZATION_FACTOR));
     }
 }
 

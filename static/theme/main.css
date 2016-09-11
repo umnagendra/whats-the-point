@@ -113,7 +113,7 @@ span:nth-child(4) {
     margin-right: 50px;
     margin-left: 50px;
     background-color: black;
-    opacity: 0.3;
+    opacity: 0.75;
 }
 
 #sentences li {
@@ -126,19 +126,22 @@ span:nth-child(4) {
     position: absolute;
 }
 
-#sentences > div:nth-child(odd) {
+#sentences > div {
     color: white;
     font-family: 'Fira Mono', monospace;
     font-size: 17px;
     padding-top: 5px;
     padding-bottom: 5px;
     background-color: blue;
+    margin-bottom: 2px;
 }
 
-#sentences > div:nth-child(even) {
+#sentences.partialsummary > div:nth-child(even) {
     color: white;
     font-family: 'Fira Mono', monospace;
     font-size: 17px;
     padding-top: 5px;
     padding-bottom: 5px;
+    background-color: black;
+    margin-bottom: 0;
 }
