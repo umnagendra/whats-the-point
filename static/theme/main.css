@@ -1,5 +1,14 @@
 html {
-    background: black;
+    background: #333333;
+}
+
+h1 {
+    font-family: 'Candal', sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 64px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 #wave {
