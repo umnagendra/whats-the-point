@@ -1,6 +1,8 @@
 # What's the Point?
 A hack that captures the textual content of any conversation, lecture, or a meeting etc. using speech recognition algorithms and __summarizes__ them using Natural Language Processing (NLP) algorithms.
 
+![Screenshot](https://pbs.twimg.com/media/CsCwyt6UkAATCJx.jpg)
+
 ##Built With
 * Python 2.7
 * NLTK for Python
